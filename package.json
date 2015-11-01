@@ -1,0 +1,19 @@
+{
+  "name": "react-twitter-example",
+  "version": "1.0.0",
+  "description": "Trying out react by building out a basic twitter client",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/danbadge/react-twitter-example.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/danbadge/react-twitter-example/issues"
+  },
+  "homepage": "https://github.com/danbadge/react-twitter-example"
+}
