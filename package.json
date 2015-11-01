@@ -15,5 +15,9 @@
   "bugs": {
     "url": "https://github.com/danbadge/react-twitter-example/issues"
   },
-  "homepage": "https://github.com/danbadge/react-twitter-example"
+  "homepage": "https://github.com/danbadge/react-twitter-example",
+  "dependencies": {
+    "react": "^0.14.1",
+    "react-dom": "^0.14.1"
+  }
 }
