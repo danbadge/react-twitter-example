@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "build": "browserify -t reactify components/*.js -o dist/app.js",
-    "test": "bash ./scripts/test.sh",
+    "test": "npm run build && bash ./scripts/test.sh",
     "functional-test": "protractor test/protractor.config.js"
   },
   "repository": {
