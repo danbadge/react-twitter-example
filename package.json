@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/danbadge/react-twitter-example",
   "dependencies": {
+    "express": "^4.13.3",
     "react": "^0.14.1",
     "react-dom": "^0.14.1"
   },
