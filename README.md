@@ -9,4 +9,4 @@ Then run the following commands:
 
 > npm run build
 
-> open index.html  <sub><sup>(MacOS X specific)</sup></sub>
+> npm start
