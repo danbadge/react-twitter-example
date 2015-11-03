@@ -4,7 +4,7 @@
   "description": "Trying out react by building out a basic twitter client",
   "main": "index.js",
   "scripts": {
-    "build": "browserify -t reactify main.js -o dist/app.js",
+    "build": "browserify -t reactify components/*.js -o dist/app.js",
     "test": "bash ./scripts/test.sh",
     "functional-test": "protractor test/protractor.config.js"
   },

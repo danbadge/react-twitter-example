@@ -5,6 +5,8 @@ describe('Search twitter tests', function () {
 		var searchTextbox = element(by.css('.test--search'));
 		searchTextbox.sendKeys('#hudl');
 
-		// expect soem results back
+		var results = element.all(by.css('.test--search-results'));
+
+		expect(results.count()).toBeGreaterThan(1);
 	});
 });
