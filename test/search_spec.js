@@ -1,9 +1,10 @@
-var assert = require('assert');
-describe('Array', function() {
-  describe('#indexOf()', function () {
-    it('should return -1 when the value is not present', function () {
-      assert.equal(-1, [1,2,3].indexOf(5));
-      assert.equal(-1, [1,2,3].indexOf(0));
-    });
-  });
+describe('Search twitter tests', function () {
+	it('should return tweets when I search for "#hudl"', function () {
+		browser.get('http://localhost:3000');
+
+		var searchTextbox = element(by.css('.test--search'));
+		searchTextbox.sendKeys('#hudl');
+
+		// expect soem results back
+	});
 });
