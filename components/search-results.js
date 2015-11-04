@@ -5,7 +5,11 @@ var SearchResults = React.createClass({
 		var resultsListItems = this.props.results.map(function (result) {
 			return (
 				<li className='test--search-result list-group-item' key={result.id}>
-					{result.tweet}
+					<div className='search-result__avatar'>
+						<img src='{result.imageUrl}' />
+						<span>{result.username}</span>
+					</div>
+					<div className='search-result__tweet'>{result.tweet}</div>
 				</li>
 				);
 		});
