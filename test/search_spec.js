@@ -9,7 +9,7 @@ describe('Search twitter tests', function () {
 
 		element(by.css('.test--search-button')).click();
 
-		var results = element.all(by.css('.test--search-results'));
+		var results = element.all(by.css('.test--search-result'));
 
 		expect(results.count()).toBeGreaterThan(1);
 	});
