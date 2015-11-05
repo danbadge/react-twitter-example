@@ -1,5 +1,6 @@
 var React = require('react');
 var SearchResults = require('./search-results');
+var $ = require('jquery');
 
 var Search = React.createClass({
 	getInitialState: function () {
