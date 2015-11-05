@@ -1,4 +1,5 @@
 var React = require('react');
+var TwitterClient = require('./twitter-client')
 
 var Trends = React.createClass({
 	getInitialState: function () {
@@ -7,7 +8,8 @@ var Trends = React.createClass({
 		 };
 	},
 	componentDidMount: function () {
-		this.setState({trends: [ { id: '123', text: 'hot' } ]});
+		var twitter = new TwitterClient();
+		this.setState({trends: twitter.trends()});
 	},
 	render: function () {
 		var trendsHtml = this.state.trends.map(function (trend) {

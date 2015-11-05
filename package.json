@@ -22,7 +22,7 @@
   "dependencies": {
     "express": "^4.13.3",
     "jquery": "^2.1.4",
-    "oauth": "^0.9.14",
+    "oauthsimple": "0.0.1",
     "react": "^0.14.1",
     "react-dom": "^0.14.1"
   },
