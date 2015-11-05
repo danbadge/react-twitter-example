@@ -1,7 +1,7 @@
 var React = require('react');
 var $ = require('jquery');
 var SearchResults = require('./search-results');
-var TrendingTopics = require('./trending-topics');
+var Trends = require('./trends');
 
 var Search = React.createClass({
 	getInitialState: function () {
@@ -32,7 +32,7 @@ var Search = React.createClass({
 						<input type='submit' className='btn btn-default test--search-button' value='Search' />
 					</span>
 				</form>
-				<TrendingTopics />
+				<Trends />
 				<SearchResults results={this.state.searchResults} />
 			</div>
 			);
