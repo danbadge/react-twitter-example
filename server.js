@@ -13,8 +13,8 @@ app.get('/', function (req, res) {
 });
 
 
-var twitterKey = '';
-var twitterSecret = '';
+var twitterKey = 'Pqesn8TJNIqNDpMWs6YecPPDN';
+var twitterSecret = 'LYRZWtOhWXCZqQtaVOEQzOnMqVMsXJ5mj3a1iy54ktY0DWmCRj';
 app.get('/api/search', function (req, res) {
 	var oauth = new OAuthSimple(twitterKey, twitterSecret);
     var signedRequest = oauth.sign({
