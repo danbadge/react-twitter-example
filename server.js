@@ -12,18 +12,26 @@ app.get('/', function (req, res) {
   res.sendFile(path.join(__dirname, 'index.html'));
 });
 
+
+var twitterKey = '';
+var twitterSecret = '';
 app.get('/api/search', function (req, res) {
-	res.json({
-		tweets: [
-			{ id: '123', tweet: 'this is a tweet' },
-			{ id: '122', tweet: 'this is another tweet' } 
-		]
-	})
+	var oauth = new OAuthSimple(twitterKey, twitterSecret);
+    var signedRequest = oauth.sign({
+      action: "GET",
+      path: "https://api.twitter.com/1.1/search/tweets.json",
+      parameters: { q: req.params.q, count: 10 }
+    });
+
+    request
+    	.get(signedRequest.signed_url)
+    	.on('error', function(err) {
+    		console.log(err)
+    	})
+    	.pipe(res);
 });
 
 app.get('/api/trends', function (req, res) {
-	var twitterKey = '';
-	var twitterSecret = '';
 	var oauth = new OAuthSimple(twitterKey, twitterSecret);
     var signedRequest = oauth.sign({
       action: "GET",
@@ -32,17 +40,11 @@ app.get('/api/trends', function (req, res) {
     });
 
     request
-	  .get(signedRequest.signed_url)
-	  .on('response', function(response) {
-	    console.log(response.statusCode) 
-	  });
-	  	  
-	res.json({
-		trends: [
-			{ id: '123', text: 'this is a trend' },
-			{ id: '122', text: 'this is another trendß' } 
-		]
-	});
+    	.get(signedRequest.signed_url)
+    	.on('error', function(err) {
+    		console.log(err)
+    	})
+    	.pipe(res);
 });
 
 var server = app.listen(3000, function () {
