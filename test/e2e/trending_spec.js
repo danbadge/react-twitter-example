@@ -1,10 +1,12 @@
-describe('Search twitter tests', function () {
+describe('Trends tests', function () {
 	beforeEach(function () {
 		browser.ignoreSynchronization = true;
 	});
 
 	it('should show top ten trends', function () {
 		browser.get('http://localhost:3000');
+
+		browser.sleep(2000);
 
 		var trends = element.all(by.css('.test--trend'));
 
@@ -14,8 +16,12 @@ describe('Search twitter tests', function () {
 	it('should show tweets related to a selected trend', function () {
 		browser.get('http://localhost:3000');
 
+		browser.sleep(2000);
+
 		var trends = element.all(by.css('.test--trend')).first();
 		trends.click();
+
+		browser.sleep(2000);
 
 		var results = element.all(by.css('.test--search-result'));
 
