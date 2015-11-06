@@ -13,20 +13,20 @@ app.get('/', function (req, res) {
 });
 
 
-var twitterKey = 'Pqesn8TJNIqNDpMWs6YecPPDN';
-var twitterSecret = 'LYRZWtOhWXCZqQtaVOEQzOnMqVMsXJ5mj3a1iy54ktY0DWmCRj';
+var twitterKey = '';
+var twitterSecret = '';
 app.get('/api/search', function (req, res) {
 	var oauth = new OAuthSimple(twitterKey, twitterSecret);
     var signedRequest = oauth.sign({
       action: "GET",
       path: "https://api.twitter.com/1.1/search/tweets.json",
-      parameters: { q: req.params.q, count: 10 }
+      parameters: { q: req.query.q, count: 10 }
     });
 
     request
     	.get(signedRequest.signed_url)
     	.on('error', function(err) {
-    		console.log(err)
+    		console.log(err);
     	})
     	.pipe(res);
 });
@@ -42,7 +42,7 @@ app.get('/api/trends', function (req, res) {
     request
     	.get(signedRequest.signed_url)
     	.on('error', function(err) {
-    		console.log(err)
+    		console.log(err);
     	})
     	.pipe(res);
 });
