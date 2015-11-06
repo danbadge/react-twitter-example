@@ -9,9 +9,9 @@ var Search = React.createClass({
 			searchResults: []
 		 };
 	},
-	search: function(e) {
-    	e.preventDefault();
-    	var url = 'api/search?q=' + this.refs.query.value;
+	search: function() {
+		e.preventDefault();
+    	var url = 'api/search?q=' + this.ref.query.value;
 		$.ajax({
 			url: url,
 			dataType: 'json',
@@ -27,9 +27,9 @@ var Search = React.createClass({
 		return (
 			<div>
 				<form onSubmit={this.search} className='input-group'>
-					<input className='test--search form-control' type='text' placeholder='Enter your search term' ref='query' />
+					<input className='test--search form-control' type='text' placeholder='Search twitter for ...' ref='query' />
 					<span className='input-group-btn'>
-						<input type='submit' className='btn btn-default test--search-button' value='Search' />
+						<button type='submit' className='btn btn-default test--search-button'>Search</button>
 					</span>
 				</form>
 				<Trends />
