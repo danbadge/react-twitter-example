@@ -20,6 +20,7 @@
   },
   "homepage": "https://github.com/danbadge/react-twitter-example",
   "dependencies": {
+    "config": "^1.16.0",
     "express": "^4.13.3",
     "jquery": "^2.1.4",
     "oauthsimple": "0.0.1",
