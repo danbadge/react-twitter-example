@@ -2,6 +2,7 @@ var express = require('express');
 var path = require('path');
 var OAuthSimple = require('oauthsimple');
 var request = require('request');
+var config = require('./config');
 
 var app = express();
 
@@ -12,9 +13,8 @@ app.get('/', function (req, res) {
   res.sendFile(path.join(__dirname, 'index.html'));
 });
 
-
-var twitterKey = '';
-var twitterSecret = '';
+var twitterKey = config.twitter.key;
+var twitterSecret = config.twitter.secret;
 app.get('/api/search', function (req, res) {
 	var oauth = new OAuthSimple(twitterKey, twitterSecret);
     var signedRequest = oauth.sign({
