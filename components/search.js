@@ -9,25 +9,16 @@ var Search = React.createClass({
 			searchResults: []
 		 };
 	},
-	search: function () {
+	search: function (e) {
 		e.preventDefault();
-    	var url = 'api/search?q=' + this.ref.query.value;
-		$.ajax({
-			url: url,
-			dataType: 'json',
-			success: function(data) {
-				this.setState({searchResults: data.statuses});
-			}.bind(this),
-			error: function(xhr, status, err) {
-				console.error(url, status, err.toString());
-			}.bind(this)
-		});
+    	this.searchFor(this.refs.query.value);
 	},
 	selectTrend: function (trend) {
-		console.log(trend);
-    	var url = 'api/search?q=' + trend;
+    	this.searchFor(trend);
+	},
+	searchFor: function (query) {
 		$.ajax({
-			url: url,
+			url: 'api/search?q=' + query,
 			dataType: 'json',
 			success: function(data) {
 				this.setState({searchResults: data.statuses});
