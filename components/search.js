@@ -9,9 +9,23 @@ var Search = React.createClass({
 			searchResults: []
 		 };
 	},
-	search: function() {
+	search: function () {
 		e.preventDefault();
     	var url = 'api/search?q=' + this.ref.query.value;
+		$.ajax({
+			url: url,
+			dataType: 'json',
+			success: function(data) {
+				this.setState({searchResults: data.statuses});
+			}.bind(this),
+			error: function(xhr, status, err) {
+				console.error(url, status, err.toString());
+			}.bind(this)
+		});
+	},
+	selectTrend: function (trend) {
+		console.log(trend);
+    	var url = 'api/search?q=' + trend;
 		$.ajax({
 			url: url,
 			dataType: 'json',
@@ -32,7 +46,7 @@ var Search = React.createClass({
 						<button type='submit' className='btn btn-default test--search-button'>Search</button>
 					</span>
 				</form>
-				<Trends />
+				<Trends selectTrend={this.selectTrend}/>
 				<SearchResults results={this.state.searchResults} />
 			</div>
 			);
