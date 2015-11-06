@@ -1,25 +1,14 @@
-var OAuthSimple = require('oauthsimple');
 var $ = require('jquery');
 
 var TwitterClient = function () {
-	var twitterKey = '';
-	var twitterSecret = ''
-
 	return {
 		trends: function () {
-			oauth = new OAuthSimple(twitterKey, twitterSecret);
-		    request = oauth.sign({
-		      action: "GET",
-		      path: "https://api.twitter.com/1.1/trends/place.json",
-		      parameters: { id: '44418' }
-		    });
-
     		$.ajax({
-			      url: request.signed_url,
+			      url: 'api/trends',
 			      dataType: 'json',
 			    })
-	    		.done(function () {
-	    			console.log('success');
+	    		.done(function (data) {
+	    			return data;
 	    		})
 	    		.fail(function () {
 	    			console.error('failed to get trends');
