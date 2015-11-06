@@ -3,13 +3,15 @@ describe('Search twitter tests', function () {
 		browser.ignoreSynchronization = true;
 	});
 
-	it('should return tweets when I search for "#hudl"', function () {
+	it('should return tweets when I search for "#football"', function () {
 		browser.get('http://localhost:3000');
 
 		var searchTextbox = element(by.css('.test--search'));
-		searchTextbox.sendKeys('#hudl');
+		searchTextbox.sendKeys('#football');
 
 		element(by.css('.test--search-button')).click();
+
+		browser.sleep(2000);
 
 		var results = element.all(by.css('.test--search-result'));
 
