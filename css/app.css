@@ -3,6 +3,12 @@
 	padding: 20px 0;
 }
 
-.list-group {
+ul.list-group {
 	padding: 10px 0;
+	margin-bottom: 0;
+}
+
+.search-result__avatar a {
+	padding-left: 5px;
+	vertical-align: bottom;
 }

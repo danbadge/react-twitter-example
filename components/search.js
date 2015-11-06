@@ -6,22 +6,22 @@ var Trends = require('./trends');
 var Search = React.createClass({
 	getInitialState: function () {
 		return { 
-			searchResults: [],
-			url: 'api/search'
+			searchResults: []
 		 };
 	},
 	search: function(e) {
     	e.preventDefault();
+    	var url = 'api/search?q=' + this.refs.query.value;
 		$.ajax({
-	      url: this.state.url + '?q=' + this.refs.query.value,
-	      dataType: 'json',
-	      success: function(data) {
-	        this.setState({searchResults: data.tweets});
-	      }.bind(this),
-	      error: function(xhr, status, err) {
-	        console.error(this.state.url, status, err.toString());
-	      }.bind(this)
-	    });
+			url: url,
+			dataType: 'json',
+			success: function(data) {
+				this.setState({searchResults: data.statuses});
+			}.bind(this),
+			error: function(xhr, status, err) {
+				console.error(url, status, err.toString());
+			}.bind(this)
+		});
 	},
 	render: function () {
 		return (
