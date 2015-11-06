@@ -1,5 +1,7 @@
 var express = require('express');
 var path = require('path');
+var OAuthSimple = require('oauthsimple');
+var request = require('request');
 
 var app = express();
 
@@ -17,7 +19,31 @@ app.get('/api/search', function (req, res) {
 			{ id: '122', tweet: 'this is another tweet' } 
 		]
 	})
-})
+});
+
+app.get('/api/trends', function (req, res) {
+	var twitterKey = '';
+	var twitterSecret = '';
+	var oauth = new OAuthSimple(twitterKey, twitterSecret);
+    var signedRequest = oauth.sign({
+      action: "GET",
+      path: "https://api.twitter.com/1.1/trends/place.json",
+      parameters: { id: '44418' }
+    });
+
+    request
+	  .get(signedRequest.signed_url)
+	  .on('response', function(response) {
+	    console.log(response.statusCode) 
+	  });
+	  	  
+	res.json({
+		trends: [
+			{ id: '123', text: 'this is a trend' },
+			{ id: '122', text: 'this is another trendß' } 
+		]
+	});
+});
 
 var server = app.listen(3000, function () {
   var host = server.address().address;
