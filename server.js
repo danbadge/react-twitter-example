@@ -14,6 +14,9 @@ app.get('/', function (req, res) {
 });
 
 var twitterKey = config.get('twitter.key');
+if (twitterKey === 'your_key_here') {
+  console.log('Missing twitter credentials - see config/default.json');
+}
 var twitterSecret = config.get('twitter.secret');
 app.get('/api/search', function (req, res) {
 	var oauth = new OAuthSimple(twitterKey, twitterSecret);
