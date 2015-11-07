@@ -22,10 +22,12 @@ describe('SearchResults', function() {
   it('should render tweet username and image from twitter search results', function() {
     var results=[
       {
-        'id': '123',
-        'tweet': 'this is a tweet',
-        'username': '@username',
-        'imageUrl': 'image-url'
+        id: '123',
+        text: 'this is a tweet',
+        user: {
+          screen_name: 'username',
+          profile_image_url_https: 'https://something/image.jpg'
+        }
       }
     ];
 
@@ -34,25 +36,29 @@ describe('SearchResults', function() {
     );
 
     var searchResult = TestUtils.findRenderedDOMComponentWithTag(searchResults, 'li');
+    var avatarImage = TestUtils.findRenderedDOMComponentWithTag(searchResults, 'img');
 
     expect(searchResult.textContent).toContain('this is a tweet');
     expect(searchResult.textContent).toContain('@username');
-    //expect(searchResult.textContent).toContain("src='image-url'");
+    expect(avatarImage.attributes['src'].value).toBe('https://something/image.jpg');
   });
 
   it('should render tweet username and image from twitter search results', function() {
     var results=[
       {
-        'id': '123',
-        'tweet': 'this is a tweet'
+        id: '123',
+        text: 'this is a tweet',
+        user: {}
       },
       {
-        'id': '124',
-        'tweet': 'this is another tweet'
+        id: '345',
+        text: 'this is another tweet',
+        user: {}
       },
       {
-        'id': '14',
-        'tweet': 'this is another another tweet'
+        id: '14',
+        text: 'this is another another tweet',
+        user: {}
       }
     ];
 
