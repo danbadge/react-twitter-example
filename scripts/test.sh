@@ -1,5 +1,8 @@
  #!/bin/bash
 
+echo "Running unit tests"
+npm run unit-test
+
 echo "Running functional tests"
 node server.js &
 server_pid=$!
