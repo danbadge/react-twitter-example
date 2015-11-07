@@ -18,7 +18,7 @@ var Search = React.createClass({
 	},
 	searchFor: function (query) {
 		$.ajax({
-			url: 'api/search?q=' + query,
+			url: 'api/search?q=' + encodeURIComponent(query),
 			dataType: 'json',
 			success: function(data) {
 				this.setState({searchResults: data.statuses});

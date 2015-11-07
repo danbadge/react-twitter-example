@@ -18,14 +18,13 @@ describe('Trends tests', function () {
 
 		browser.sleep(2000);
 
-		var trends = element.all(by.css('.test--trend')).first();
-		trends.click();
+		var trend = element.all(by.css('.test--trend-link')).first();
+		trend.click();
 
 		browser.sleep(2000);
 
 		var results = element.all(by.css('.test--search-result'));
 
 		expect(results.count()).toBeGreaterThan(1);
-		//add should mention topic???
 	});
 });

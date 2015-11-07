@@ -27,7 +27,7 @@ var Trends = React.createClass({
 		var trendsHtml = this.state.trends.map(function (trend) {
 			return (
 				<li className='test--trend list-group-item' key={trend.name}>
-					<a href='#' onClick={this.selectTrend.bind(this, trend.query)}>{trend.name}</a>
+					<a className='test--trend-link' href='#' onClick={this.selectTrend.bind(this, trend.name)}>{trend.name}</a>
 				</li>
 				);
 		}.bind(this));
