@@ -2,19 +2,14 @@ var React = require('react');
 var $ = require('jquery');
 var SearchResults = require('./search-results');
 var Trends = require('./trends');
+var searchStore = require('./search-store');
 
 var Search = React.createClass({
 	getInitialState: function () {
 		return { 
-			searchResults: []
+			searchResults: [],
+			searchTerm: ''
 		 };
-	},
-	search: function (e) {
-		e.preventDefault();
-    	this.searchFor(this.refs.query.value);
-	},
-	selectTrend: function (trend) {
-    	this.searchFor(trend);
 	},
 	searchFor: function (query) {
 		$.ajax({
@@ -28,16 +23,27 @@ var Search = React.createClass({
 			}.bind(this)
 		});
 	},
+	searchTermChanged: function(event) {
+		var searchTerm = event.target.value;
+		this.setState({searchTerm: event.target.value});
+		this.searchFor(searchTerm);
+	},
+	componentDidMount: function () {
+		var component = this;
+		searchStore.addListener(function () {
+			component.setState({searchTerm: searchStore.term});
+			component.searchFor(searchStore.term);
+		});
+	},
 	render: function () {
+		var searchTerm = this.state.searchTerm;
 		return (
 			<div>
-				<form onSubmit={this.search} className='input-group'>
-					<input className='test--search form-control' type='text' placeholder='Search twitter for ...' ref='query' />
-					<span className='input-group-btn'>
-						<button type='submit' className='btn btn-default test--search-button'>Search</button>
-					</span>
+				<form>
+					<input className='test--search form-control' type='text' 
+					placeholder='Search twitter for ...' value={searchTerm} onChange={this.searchTermChanged} />
 				</form>
-				<Trends selectTrend={this.selectTrend}/>
+				<Trends />
 				<SearchResults results={this.state.searchResults} />
 			</div>
 			);

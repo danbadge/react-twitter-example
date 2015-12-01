@@ -9,8 +9,6 @@ describe('Search twitter tests', function () {
 		var searchTextbox = element(by.css('.test--search'));
 		searchTextbox.sendKeys('#football');
 
-		element(by.css('.test--search-button')).click();
-
 		browser.sleep(2000);
 
 		var results = element.all(by.css('.test--search-result'));
