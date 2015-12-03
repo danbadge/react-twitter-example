@@ -3,6 +3,7 @@ var $ = require('jquery');
 var SearchResults = require('./search-results');
 var Trends = require('./trends');
 var searchStore = require('./search-store');
+var request = require('superagent');
 
 var Search = React.createClass({
 	getInitialState: function () {
@@ -12,16 +13,17 @@ var Search = React.createClass({
 		 };
 	},
 	searchFor: function (query) {
-		$.ajax({
-			url: 'api/search?q=' + encodeURIComponent(query),
-			dataType: 'json',
-			success: function(data) {
-				this.setState({searchResults: data.statuses});
-			}.bind(this),
-			error: function(xhr, status, err) {
-				console.error(url, status, err.toString());
-			}.bind(this)
-		});
+		var self = this;
+		request
+			.get('api/search')
+			.query({ q: encodeURIComponent(query) })
+			.end(function (error, response) {
+				if (error) {
+					console.error(url, error.status, err.toString());
+				} else {
+					self.setState({searchResults: response.body.statuses});
+				}
+			});
 	},
 	searchTermChanged: function(event) {
 		var searchTerm = event.target.value;

@@ -1,7 +1,6 @@
 var React = require('react');
-var $ = require('jquery');
 var dispatcher = require('./dispatcher');
-var self = this;
+var request = require('superagent');
 
 var Trends = React.createClass({
 	getInitialState: function () {
@@ -10,17 +9,16 @@ var Trends = React.createClass({
 		 };
 	},
 	componentDidMount: function () {
-    	var url = 'api/trends';
-		$.ajax({
-			url: url,
-			dataType: 'json',
-			success: function(data) {
-				this.setState({trends: data[0].trends});
-			}.bind(this),
-			error: function(xhr, status, err) {
-				console.error(url, status, err.toString());
-			}.bind(this)
-		});
+		var self = this;
+		request
+			.get('api/trends')
+			.end(function (error, response) {
+				if (error) {
+					console.error(url, error.status, err.toString());
+				} else {
+					self.setState({trends: response.body[0].trends});
+				}
+			});
 	},
 	trendSelected: function(trend) {
 		dispatcher.dispatch({
