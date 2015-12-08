@@ -1,5 +1,4 @@
 var React = require('react');
-var $ = require('jquery');
 var SearchResults = require('./search-results');
 var Trends = require('./trends');
 var searchStore = require('./search-store');
