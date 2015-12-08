@@ -1,7 +1,7 @@
 var React = require('react');
 var SearchResults = require('./search-results');
 var Trends = require('./trends');
-var searchStore = require('./search-store');
+var searchStore = require('../flux/search-store');
 var request = require('superagent');
 
 var Search = React.createClass({

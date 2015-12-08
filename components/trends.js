@@ -1,5 +1,5 @@
 var React = require('react');
-var dispatcher = require('./dispatcher');
+var dispatcher = require('../flux/dispatcher');
 var request = require('superagent');
 
 var Trends = React.createClass({
