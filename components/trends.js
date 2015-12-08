@@ -16,7 +16,7 @@ var Trends = React.createClass({
 				if (error) {
 					console.error(url, error.status, err.toString());
 				} else {
-					self.setState({trends: response.body[0].trends});
+					self.setState({trends: response.body[0].trends.slice(0,10)});
 				}
 			});
 	},
