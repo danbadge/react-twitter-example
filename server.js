@@ -31,15 +31,20 @@ app.get('/api/search', function (req, res) {
     	.on('error', function(err) {
     		console.log(err);
     	})
+      .on('response', function(response) { 
+        delete response.headers['content-disposition'];
+      })
     	.pipe(res);
 });
 
 app.get('/api/trends', function (req, res) {
+var londonWoeId = '44418';
+
 	var oauth = new OAuthSimple(twitterKey, twitterSecret);
     var signedRequest = oauth.sign({
       action: "GET",
       path: "https://api.twitter.com/1.1/trends/place.json",
-      parameters: { id: '44418' }
+      parameters: { id: londonWoeId }
     });
 
     request
@@ -47,7 +52,10 @@ app.get('/api/trends', function (req, res) {
     	.on('error', function(err) {
     		console.log(err);
     	})
-    	.pipe(res);
+      .on('response', function(response) { 
+        delete response.headers['content-disposition'];
+      })
+      .pipe(res);
 });
 
 var server = app.listen(3000, function () {
